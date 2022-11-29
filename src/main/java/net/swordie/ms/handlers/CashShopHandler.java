@@ -35,7 +35,6 @@ public class CashShopHandler {
     public static void handleCashShopQueryCashRequest(Client c, InPacket inPacket) {
         c.write(CCashShop.queryCashResult(c.getChr()));
     }
-
     @Handler(op = InHeader.CASH_SHOP_CASH_ITEM_REQUEST)
     public static void handleCashShopCashItemRequest(Client c, InPacket inPacket) {
         Char chr = c.getChr();
@@ -47,22 +46,32 @@ public class CashShopHandler {
         CashShop cs = Server.getInstance().getCashShop();
         if (cit == null) {
             log.error("Unhandled cash shop cash item request " + type);
-            c.write(CCashShop.error());
+//            c.write(CCashShop.error());
             return;
         }
         switch (cit) {
             case Req_Buy:
-                byte idk1 = inPacket.decodeByte();
-                byte paymentMethod = inPacket.decodeByte();
-                int idk2 = inPacket.decodeInt();
-                int itemPos = inPacket.decodeInt();
-                int cost = inPacket.decodeInt();
-                CashShopItem csi = cs.getItemByPosition(itemPos - 1); // client's pos starts at 1
-                if (csi == null || csi.getNewPrice() != cost) {
-                    c.write(CCashShop.error());
-                    log.error("Requested item's cost did not match client's cost");
-                    return;
-                }
+                inPacket.decodeByte();
+                inPacket.decodeByte();
+                inPacket.decodeByte();
+                inPacket.decodeByte();
+                inPacket.decodeByte();
+                inPacket.decodeByte();
+                inPacket.decodeByte();
+//                byte paymentMethod = inPacket.decodeByte();
+//                int idk2 = inPacket.decodeInt();
+//                int itemPos = inPacket.decodeInt();
+//                int cost = inPacket.decodeInt();
+                int SN=inPacket.decodeInt();
+                CashShopItem csi=cs.getItemBySN(SN);
+                int paymentMethod=4;
+                int cost=csi.getNewPrice();
+//                CashShopItem csi = cs.getItemByPosition(itemPos - 1); // client's pos starts at 1
+//                if (csi == null || csi.getNewPrice() != cost) {
+//                    c.write(CCashShop.error());
+//                    log.error("Requested item's cost did not match client's cost");
+//                    return;
+//                }
                 boolean notEnoughMoney = false;
                 switch (paymentMethod) {
                     case 1: // Credit
@@ -93,8 +102,10 @@ public class CashShopHandler {
                     return;
                 }
                 CashItemInfo cii = csi.toCashItemInfo(account);
-                DatabaseManager.saveToDB(cii); // ensures the item has a unique ID
-                trunk.addCashItem(cii);
+//                DatabaseManager.saveToDB(cii); // ensures the item has a unique ID
+//                trunk.addCashItem(cii);
+                chr.addItemToInventory(cii.getItem());
+                account.addNXCredit(-cost);
                 c.write(CCashShop.cashItemResBuyDone(cii, null, null, 0));
                 c.write(CCashShop.queryCashResult(chr));
                 break;
@@ -137,7 +148,7 @@ public class CashShopHandler {
                 c.write(CCashShop.queryCashResult(chr));
                 break;
             default:
-                c.write(CCashShop.error());
+//                c.write(CCashShop.error());
                 log.error("Unhandled cash shop cash item request " + cit);
                 chr.dispose();
                 break;

@@ -21,6 +21,7 @@ public class CashShopItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private int SN;
     private int itemID;
     private int stock;
     @Enumerated(EnumType.ORDINAL)
@@ -208,6 +209,9 @@ public class CashShopItem {
 
     public int getId() {
         return id;
+    }
+    public int getSN() {
+        return SN;
     }
 
     public void setId(int id) {
