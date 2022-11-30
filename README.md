@@ -14,7 +14,9 @@ Known issues:
 1. Based on the situations of Kinesis skills, I anticipate a lot of skill misbehaviours of other classes.
 2. Mob drop data is missing, or I couldn't find them, this original author give drops based on levels, it's working, but not satisfying.
 3. A lot of quest and NPC interactions and item interations are missing, for example, you can't get AbsoLab equipments from the shop.
-4. ...
+4. V matrix displaying issue
+5. Some skills upgrading issue which cost skill points by skills that do not need them (like Ultimate - Psychic Shot).
+6. ...
 
 You can download the v214 client from steam using [DepotDownloader](https://github.com/SteamRE/DepotDownloader), with -app 216150 -depot 216151 -manifest 976750626611673486.
 
