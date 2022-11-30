@@ -18,6 +18,8 @@ Known issues:
 
 You can download the v214 client from steam using [DepotDownloader](https://github.com/SteamRE/DepotDownloader), with -app 216150 -depot 216151 -manifest 976750626611673486.
 
+Before running you may need wz folder in the root directory, you can aquire them by extracting all wz files in the v214 maplestory client you downloaded using either [WZ-Dumper](https://github.com/Xterminatorz/WZ-Dumper) (recommended, since it is simple to use and get smaller results, which are sufficient for the server) or [Harepacker](https://github.com/lastbattle/Harepacker-resurrected) (would unpack wz lossless). Or you can just download them from the original link.
+
 Other things just follow the original thread I put above.
 
 我用新楓之谷236版本（因为手头正好有）做的简单汉化文件下载，可能会因为版本不同导致少数文本不准确（比如版本更新修改了某些技能的效果之类）。链接：https://pan.baidu.com/s/13jZNW3bWqRPtgsi1heRIYA 提取码：8ol1
