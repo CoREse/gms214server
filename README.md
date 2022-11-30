@@ -1,4 +1,4 @@
-#A server emulator for Maplestory.
+# A server emulator for Maplestory GMS v214.
 
 Acquired from https://forum.ragezone.com/f427/java-v214-swordie-source-1209447/
 
@@ -20,4 +20,4 @@ You can download the v214 client from steam using [DepotDownloader](https://gith
 
 Other things just follow the original thread I put above.
 
-我用新楓之谷236版本（因为手头正好有）做的简单汉化文件下载：链接：https://pan.baidu.com/s/13jZNW3bWqRPtgsi1heRIYA 提取码：8ol1
+我用新楓之谷236版本（因为手头正好有）做的简单汉化文件下载，可能会因为版本不同导致少数文本不准确（比如版本更新修改了某些技能的效果之类）。链接：https://pan.baidu.com/s/13jZNW3bWqRPtgsi1heRIYA 提取码：8ol1
