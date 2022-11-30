@@ -11,6 +11,7 @@ import net.swordie.ms.client.character.skills.info.SkillUseInfo;
 import net.swordie.ms.client.guild.Guild;
 import net.swordie.ms.client.jobs.Job;
 import net.swordie.ms.client.jobs.adventurer.magician.FirePoison;
+import net.swordie.ms.client.jobs.adventurer.Kinesis;
 import net.swordie.ms.client.jobs.cygnus.BlazeWizard;
 import net.swordie.ms.client.jobs.cygnus.NightWalker;
 import net.swordie.ms.client.jobs.nova.AngelicBuster;
@@ -376,6 +377,11 @@ public class AttackHandler {
         ai.mobCount = (mask >>> 4) & 0xF;
         ai.idk205 = inPacket.decodeInt();
         ai.skillId = inPacket.decodeInt();
+        if (ai.skillId==Kinesis.PSYCHIC_DRAIN)
+        {
+            Job job=chr.getJobHandler();
+            ((Kinesis)job).addPP(ai.hits);
+        }
         ai.slv = inPacket.decodeInt();
         if (header == InHeader.USER_MELEE_ATTACK || header == InHeader.USER_SHOOT_ATTACK
                 || header == InHeader.USER_NON_TARGET_FORCE_ATOM_ATTACK) {

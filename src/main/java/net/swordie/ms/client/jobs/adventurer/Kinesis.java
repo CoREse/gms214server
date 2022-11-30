@@ -76,6 +76,10 @@ public class Kinesis extends Job {
     // V skills
     public static final int PSYCHIC_TORNADO = 400021008;
     public static final int MIND_OVER_MATTER = 400021048;
+    public static final int ULTIMATE_MIND_OVER_MATTER_EXPLODE = 400021053;
+    public static final int ULTIMATE_PSYCHIC_SHOCKWAVE = 400021074;
+    public static final int ULTIMATE_PSYCHIC_SHOCKWAVE_BLACKHOLE = 400021075;
+    public static final int ULTIMATE_PSYCHIC_SHOCKWAVE_SHOOT = 400021076;
 
 
     private static final int MAX_PP = 30;
@@ -203,8 +207,10 @@ public class Kinesis extends Job {
                 attackInfo.skillId != MIND_OVER_MATTER &&
                 attackInfo.skillId != ULTIMATE_PSYCHIC_SHOT
         ) {
-            kinesisPPAttack(skillID, slv, si);
+            kinesisPPAttack(skillID, slv, si,attackInfo);
         }
+//        if (attackInfo.skillId == MIND_OVER_MATTER) substractPP(10);
+//        else if (attackInfo.skillId == ULTIMATE_PSYCHIC_SHOT) substractPP(5);
         Option o1 = new Option();
         Option o2 = new Option();
         Option o3 = new Option();
@@ -335,7 +341,36 @@ public class Kinesis extends Job {
         }
     }
 
-    private void kinesisPPAttack(int skillID, int slv, SkillInfo si) {
+    private void kinesisPPAttack(int skillID, int slv, SkillInfo si, AttackInfo ai) {
+        if (ai!=null)
+        {
+            if(ai.skillId==ULTIMATE_PSYCHIC_SHOCKWAVE_BLACKHOLE)
+            {
+                if (ai!=null && ai.mobCount>0)
+                {
+                    addPP(1);
+                }
+                return;
+            }
+            if (ai.skillId==ULTIMATE_PSYCHIC_SHOCKWAVE_SHOOT)
+            {
+                boolean HitBoss=false;
+                for (int i=0;i<ai.mobAttackInfo.size();++i) {
+                    HitBoss|=ai.mobAttackInfo.get(i).mob.isBoss();
+                }
+                if (HitBoss)
+                {
+                    addPP(1);
+                }
+                return;
+            }
+            if (ai.skillId==ULTIMATE_PSYCHIC_SHOCKWAVE)
+            {
+                int ppCons = si.getValue(ppCon, slv);
+                substractPP(ppCons);
+                return;
+            }
+        }
         if (si == null) {
             if (skillID == 0) {
                 addPP(1);
@@ -373,7 +408,7 @@ public class Kinesis extends Job {
         if (skill != null) {
             si = SkillData.getSkillInfoById(skillID);
         }
-        kinesisPPAttack(skillID, slv, si);
+        kinesisPPAttack(skillID, slv, si,null);
         Option o1 = new Option();
         Option o2 = new Option();
         Option o3 = new Option();

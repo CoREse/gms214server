@@ -20,6 +20,7 @@ import net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat;
 import net.swordie.ms.client.character.skills.temp.TemporaryStatManager;
 import net.swordie.ms.client.jobs.Job;
 import net.swordie.ms.client.jobs.adventurer.BeastTamer;
+import net.swordie.ms.client.jobs.adventurer.Kinesis;
 import net.swordie.ms.client.jobs.adventurer.magician.FirePoison;
 import net.swordie.ms.client.jobs.adventurer.pirate.Buccaneer;
 import net.swordie.ms.client.jobs.adventurer.thief.BladeMaster;
@@ -60,6 +61,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import static net.swordie.ms.client.character.skills.SkillStat.ppCon;
 import static net.swordie.ms.client.jobs.legend.Luminous.PRESSURE_VOID;
 import net.swordie.ms.client.jobs.resistance.Mechanic;
 
@@ -906,6 +908,12 @@ public class SkillHandler {
 
         Job jobHandler = chr.getJobHandler();
         jobHandler.handleShootObj(chr, skillId, chr.getSkillLevel(skillId));
+        if (skillId == Kinesis.MIND_OVER_MATTER)
+        {
+            SkillInfo si = SkillData.getSkillInfoById(skillId);
+            int ppCons = si.getValue(ppCon, slv);
+            ((Kinesis) jobHandler).substractPP(ppCons);
+        }
 
         chr.write(UserLocal.shootObjectCreated(skillId, slv, shootObjIdList));
         chr.getField().broadcastPacket(UserRemote.shootObject(chr, action, skillId, shootObjIdList), chr);

@@ -11,6 +11,7 @@ import net.swordie.ms.client.character.skills.info.SkillInfo;
 import net.swordie.ms.client.character.skills.info.SkillUseInfo;
 import net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat;
 import net.swordie.ms.client.character.skills.temp.TemporaryStatManager;
+import net.swordie.ms.client.jobs.Job;
 import net.swordie.ms.client.jobs.adventurer.BeastTamer;
 import net.swordie.ms.client.jobs.adventurer.Kinesis;
 import net.swordie.ms.client.jobs.adventurer.archer.BowMaster;
@@ -61,6 +62,7 @@ import java.util.Set;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
+import static net.swordie.ms.client.character.skills.SkillStat.ppCon;
 import static net.swordie.ms.enums.StealMemoryType.REMOVE_STEAL_MEMORY;
 import static net.swordie.ms.enums.StealMemoryType.STEAL_SKILL;
 
@@ -68,7 +70,27 @@ public class JobSkillHandler {
 
     private static final Logger log = Logger.getLogger(JobSkillHandler.class);
 
-
+    @Handler(op = InHeader.RESET_PATH_PSYCHIC_LOCK)
+    public static void handleResetPathPsychicLock(Client c, InPacket inPacket) {//ULTIMATE_PSYCHIC_SHOT
+        Char chr=c.getChr();
+        int SkillID=inPacket.decodeInt();
+        if (SkillID==Kinesis.ULTIMATE_PSYCHIC_SHOT) {
+            Job sourceJobHandler = chr.getJobHandler();
+            SkillInfo si = SkillData.getSkillInfoById(SkillID);
+            Skill skill = chr.getSkill(SkillID);
+            int slv = (byte) skill.getCurrentLevel();
+            int ppCons = si.getValue(ppCon, slv);
+            ((Kinesis) sourceJobHandler).substractPP(ppCons);
+        }
+        chr.dispose();
+    }
+    @Handler(op = InHeader.KINESIS_RECOVER_PP)
+    public static void handleKinesisRecoverPP(Client c, InPacket inPacket) {
+        Char chr=c.getChr();
+        Job sourceJobHandler = chr.getJobHandler();
+        ((Kinesis)sourceJobHandler).addPP(1);
+        chr.dispose();
+    }
     @Handler(op = InHeader.CREATE_KINESIS_PSYCHIC_AREA)
     public static void handleCreateKinesisPsychicArea(Char chr, InPacket inPacket) {
         PsychicArea pa = new PsychicArea();
