@@ -18,7 +18,8 @@ Known issues:
 5. Some skills upgrading issue which cost skill points by skills that do not need them (like Ultimate - Psychic Shot).
 6. Boss skill effects missing (eg. Lucid wouldn't cause any damage).
 7. You could stuck at some mission maps due to the missing of quest scripts.
-8. ...
+8. The runes on the map not working.
+9. ...
 
 You can download the v214 client from steam using [DepotDownloader](https://github.com/SteamRE/DepotDownloader), with -app 216150 -depot 216151 -manifest 976750626611673486.
 
