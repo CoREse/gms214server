@@ -294,11 +294,11 @@ public class MigrationHandler {
         c.write(CCashShop.oneTen(cs));
 //        Char chr = c.getChr();
 //        Field field = chr.getField();
-//        if ((field.getFieldLimit() & FieldOption.MigrateLimit.getVal()) > 0) {
-//            chr.dispose();
-//            return;
-//        }
-//        chr.getScriptManager().startScript(9010063, 0, "dressing_room", ScriptType.Npc);
+        if ((field.getFieldLimit() & FieldOption.MigrateLimit.getVal()) > 0) {
+            chr.dispose();
+            return;
+        }
+        chr.getScriptManager().startScript(9010063, 0, "dressing_room", ScriptType.Npc);
     }
 
     @Handler(op = InHeader.USER_MAP_TRANSFER_REQUEST)

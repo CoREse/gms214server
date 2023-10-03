@@ -8,15 +8,15 @@
         </property>
 
         <property name = "hibernate.connection.driver_class">
-            com.mysql.jdbc.Driver
+            com.mysql.cj.jdbc.Driver
         </property>
 
         <property name = "hibernate.connection.url">
-            jdbc:mysql://127.0.0.1:3306/v214?autoReconnect=true&amp;useSSL=false&amp;allowPublicKeyRetrieval=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC
+            jdbc:mysql://127.0.0.1:3306/MS214?autoReconnect=true&amp;useSSL=false&amp;allowPublicKeyRetrieval=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC
         </property>
 
         <property name = "hibernate.connection.username">
-            msserver
+            MSServer
         </property>
 
         <property name = "hibernate.connection.password">

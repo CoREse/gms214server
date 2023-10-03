@@ -186,19 +186,28 @@ public class User {
     }
 
     public int getMaplePoints() {
+        queryPoints();
         return maplePoints;
     }
 
     public void setMaplePoints(int maplePoints) {
         this.maplePoints = maplePoints;
+        DatabaseManager.saveToDB(this);
     }
 
+    public void queryPoints() {
+        User u=getFromDBById(id);
+        nxPrepaid=u.nxPrepaid;
+        maplePoints=u.maplePoints;
+    }
     public int getNxPrepaid() {
+        queryPoints();
         return nxPrepaid;
     }
 
     public void setNxPrepaid(int nxPrepaid) {
         this.nxPrepaid = nxPrepaid;
+        DatabaseManager.saveToDB(this);
     }
 
     public void addMaplePoints(int points) {

@@ -45,21 +45,21 @@ public class CCashShop {
 
         outPacket.encodeByte(CashItemType.Res_Buy_Done.getVal());
         cashItemInfo.encode(outPacket);
-//        boolean hasRegisterDate = registerDate != null;
-//        outPacket.encodeInt(hasRegisterDate ? 1 : 0);
-//        if (hasRegisterDate) {
-//            outPacket.encodeFT(registerDate);
-//        }
-//        boolean hasReceiveBonus = receiveBonus != null;
-//        outPacket.encodeByte(hasReceiveBonus);
-//        if (receiveBonus != null) {
-//            receiveBonus.encode(outPacket);
-//        }
-//        boolean hasSomeInt = someInt != 0;
-//        outPacket.encodeByte(hasSomeInt);
-//        if (hasSomeInt) {
-//            outPacket.encodeInt(someInt);
-//        }
+        boolean hasRegisterDate = registerDate != null;
+        outPacket.encodeInt(hasRegisterDate ? 1 : 0);
+        if (hasRegisterDate) {
+            outPacket.encodeFT(registerDate);
+        }
+        boolean hasReceiveBonus = receiveBonus != null;
+        outPacket.encodeByte(hasReceiveBonus);
+        if (receiveBonus != null) {
+            receiveBonus.encode(outPacket);
+        }
+        boolean hasSomeInt = someInt != 0;
+        outPacket.encodeByte(hasSomeInt);
+        if (hasSomeInt) {
+            outPacket.encodeInt(someInt);
+        }
 
         return outPacket;
     }

@@ -49,10 +49,13 @@ public class CashShopHandler {
 //            c.write(CCashShop.error());
             return;
         }
+        log.debug("Received CASH_SHOP_CASH_ITEM_REQUEST: "+ inPacket);
         switch (cit) {
             case Req_Buy:
                 inPacket.decodeByte();
-                inPacket.decodeByte();
+                byte paymentMethod=inPacket.decodeByte();
+                log.debug("Payment method: "+paymentMethod);
+//                inPacket.decodeByte();
                 inPacket.decodeByte();
                 inPacket.decodeByte();
                 inPacket.decodeByte();
@@ -64,7 +67,8 @@ public class CashShopHandler {
 //                int cost = inPacket.decodeInt();
                 int SN=inPacket.decodeInt();
                 CashShopItem csi=cs.getItemBySN(SN);
-                int paymentMethod=4;
+//                paymentMethod=1;
+//                int paymentMethod=1;
                 int cost=csi.getNewPrice();
 //                CashShopItem csi = cs.getItemByPosition(itemPos - 1); // client's pos starts at 1
 //                if (csi == null || csi.getNewPrice() != cost) {
@@ -88,7 +92,7 @@ public class CashShopHandler {
                             notEnoughMoney = true;
                         }
                         break;
-                    case 4: // Prepaid
+                    case 32: // Prepaid
                         if (user.getNxPrepaid() >= cost) {
                             user.deductNXPrepaid(cost);
                         } else {

@@ -1,6 +1,6 @@
 package net.swordie.ms.connection.db;
 
-import com.mysql.jdbc.Connection;
+//import com.mysql.jdbc.Connection;
 import net.swordie.ms.client.Account;
 import net.swordie.ms.client.LinkSkill;
 import net.swordie.ms.client.User;

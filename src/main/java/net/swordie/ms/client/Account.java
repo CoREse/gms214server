@@ -89,7 +89,6 @@ public class Account {
 
     public Account(){
     }
-
     public static Account getFromDBById(int accountID) {
         return (Account) DatabaseManager.getObjFromDB(Account.class, accountID);
     }
@@ -181,11 +180,13 @@ public class Account {
     }
 
     public int getNxCredit() {
+        nxCredit=getFromDBById(id).nxCredit;
         return nxCredit;
     }
 
     public void setNxCredit(int nxCredit) {
         this.nxCredit = nxCredit;
+        DatabaseManager.saveToDB(this);
     }
 
     public void addLinkSkill(LinkSkill linkSkill) {
