@@ -101,8 +101,8 @@ public enum CashItemType {
     Res_LoadWish_Failed(11),// ^----- maybe incorrect
     Res_SetWish_Done(11),
     Res_SetWish_Failed(12),
-    Res_Buy_Done(14),
     Res_Buy_Failed(13),
+    Res_Buy_Done(14),
     Res_UseCoupon_Done(15),
     Res_NexonStarCouponUse_Done(16),
     Res_NexonStarCoupon_Failed(17),

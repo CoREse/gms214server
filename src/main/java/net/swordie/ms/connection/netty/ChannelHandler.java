@@ -142,7 +142,8 @@ public class ChannelHandler extends SimpleChannelInboundHandler<InPacket> {
                     } else {
                         log.error("Unhandled first param type of handler " + method.getName() + ", type = " + clazz);
                     }
-                } catch (IllegalAccessException | InvocationTargetException e) {
+//                } catch (IllegalAccessException | InvocationTargetException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
