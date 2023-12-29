@@ -42,7 +42,7 @@ public class SkillInfo {
     private Map<Integer, Integer> reqSkills = new HashMap<>();
     private boolean notCooltimeReset;
     private boolean notIncBuffDuration;
-    private static ScriptEngine engine = new ScriptEngineManager().getEngineByName("JavaScript");
+    private static ScriptEngine engine = new ScriptEngineManager(null).getEngineByName("JavaScript");
     private boolean psd;
     private Set<Integer> addAttackSkills = new HashSet<>();
     private List<HashMap<Integer, Integer>> extraSkillInfo = new ArrayList<>();
